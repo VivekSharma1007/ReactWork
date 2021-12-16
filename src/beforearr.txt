@@ -1,0 +1,167 @@
+import React, { Children } from "react";
+import ReactDOM from "react-dom";
+
+import "./index.css";
+
+function BookList() {
+  return (
+    <section className="AllComp">
+      {/* <AllComponents />
+      <AllComponents />
+      <AllComponents />
+      <AllComponents />
+      <AllComponents />
+      <AllComponents />
+      <AllComponents /> */}
+
+      {/* <Book />
+      <Book /> */}
+
+      {/* normal call components */}
+      <Book
+        imgurl={firstBook.imgurl}
+        title={firstBook.title}
+        author={firstBook.author}
+      />
+      <Book
+        imgurl={secondBook.imgurl}
+        title={secondBook.title}
+        author={secondBook.author}
+      />
+      {/* <Book imgurl={firstBook.imgurl} title={firstBook.title} author={firstBook.author} commentkaex={firstBook.commentkaex} />  */}
+
+      {/* for children component */}
+      <Book
+        imgurl={firstBook.imgurl}
+        title={firstBook.title}
+        author={firstBook.author}
+      >
+        {/* children prop */}
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint,
+          temporibus porro! Nesciunt numquam repudiandae nostrum. Rem, quod nam
+          vero iure quo ipsam rerum id eos ex iusto mollitia totam eaque.
+        </p>
+      </Book>
+    </section>
+  );
+}
+
+const firstBook = {
+  imgurl:
+    "https://images-eu.ssl-images-amazon.com/images/I/91bYsX41DVL._AC_UL906_SR906,600_.jpg",
+  title: "Atomic",
+  author: "Vivek Sharma",
+  commentkaex: "this is available only in this",
+};
+
+const secondBook = {
+  imgurl:
+    "https://images-eu.ssl-images-amazon.com/images/I/71g2ednj0JL._AC_UL906_SR906,600_.jpg",
+  title: "Psychology of Money",
+  author: "Morgan Housel",
+};
+
+//  access using object and props
+// normal
+// const Book = (props) => {
+//   return (
+//     <section className='bookList'>
+//       <img src={props.imgurl} alt="" />
+//       <p>{props.title}</p>
+//       <p style={{fontFamily:'cursive'}}>{props.author}</p>
+//       {/* this below prop wiil only render if declared and passed if not no prob it will not display */}
+//       <p>{props.commentkaex}</p>
+//     </section>
+//   );
+// }
+
+// destructuring
+
+const Book = (props) => {
+  // second method
+  // const {imgurl, title, author} = props; // one method
+  return (
+    <section className="bookList">
+      <img src={props.imgurl} alt="" />
+      <p>{props.title}</p>
+      {props.Children}
+      <p style={{ fontFamily: "cursive" }}>{props.author}</p>
+      {/* this below prop wiil only render if declared and passed if not no prob it will not display */}
+      {/* <p>{props.commentkaex}</p> */}
+    </section>
+  );
+};
+
+
+
+
+// const Book = ({ imgurl, title, author, Children }) => {
+//   // second method
+//   // const {imgurl, title, author} = props; // one method
+//   return (
+//     <section className="bookList">
+//       <img src={imgurl} alt="" />
+//       <p>{title}</p>
+//       {Children}
+//       <p style={{ fontFamily: "cursive" }}>{author}</p>
+//       {/* this below prop wiil only render if declared and passed if not no prob it will not display */}
+//       {/* <p>{props.commentkaex}</p> */}
+//     </section>
+//   );
+// };
+
+// directly access the values from the string*****************
+
+// const imgurl = 'https://images-eu.ssl-images-amazon.com/images/I/91bYsX41DVL._AC_UL906_SR906,600_.jpg';
+// const title = 'Atomic';
+// const author = 'Vivek Sharma'
+
+// const Book = () => {
+//   return (
+//     <section className='bookList'>
+//       <img src={imgurl} alt="" />
+//       <p>{title}</p>
+//       <p>{author}</p>
+//     </section>
+//   );
+// }
+
+// creating multiple components********************
+
+// const AllComponents = () => {
+//  return (
+//    <div className="bookList">
+//      <Book />
+//      <Title />
+//      <AuthorName />
+//    </div>
+
+//  );
+
+// }
+
+// const Book = () => {
+//   return (
+//     <img
+//       src="https://images-eu.ssl-images-amazon.com/images/I/91bYsX41DVL._AC_UL906_SR906,600_.jpg"
+//       alt="image"
+//     />
+
+//   );
+
+// };
+
+// let titleName = 'Atomic';
+// const Title = () => {
+//   return <p>{titleName}</p>;
+
+// }
+
+// const AuthorName = () => {
+//   return (
+//     <p style={{fontSize: '1.5rem', fontFamily:'cursiv'}}>Vivek Sharma</p>
+//   );
+// }
+
+ReactDOM.render(<BookList />, document.getElementById("root"));
