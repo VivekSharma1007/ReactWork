@@ -47,9 +47,7 @@ const arr = [
 ];
 
 
-// spread operator and key props 
-// first give every object in array a unique id 
-// then pass that id value 
+
 const Booklist = () => {
   return (
     <section className="bookList">
@@ -60,7 +58,7 @@ const Booklist = () => {
           
           return (
             
-            <Book key={book.id} {...book}></Book> // id in key and spread operator for book
+            <Book key={book.id} {...book}></Book> 
           );
         })
 
@@ -71,12 +69,31 @@ const Booklist = () => {
 
 
 const Book = (props) => {
-  const { imgurl, title, author } = props     // using spread operator we dont need to use props.book
+  function clickSimple() {
+    console.log("clicked");
+  }
+  function clickTogetTarget(e) 
+  {
+    console.log(e.target);
+    console.log(e);
+  }
+  const parameterFunction = (author) => {
+    console.log(author);
+  }
+  const { imgurl, title, author } = props     
   return (
     <div>
       <img src={imgurl} />
-      <p>{title}</p>
-      <p>{author}</p>
+      <p onClick={clickSimple}>{title}</p> {/* simple ex */}
+      {/* <p onClick={clickTogetTarget}>{author}</p> */}
+      <p onClick={ () => {console.log(title);}}>{author}</p>  {/* in line function call */ }
+      
+      {/* in below case if we are passing the parameters then on loading the site the work is already done before the event occur */}
+      {/* <p onClick={parameterFunction(author)}>{author}</p>  */}
+
+      
+      {/* to get the solution of above problem we need to create an inline fuction for it then pass the parameter */}
+      <p onClick={() => parameterFunction(author)}>{author}</p>
     </div>
 
   );
@@ -183,3 +200,51 @@ ReactDOM.render(<Listofbooks />, document.getElementById("root"));
 
 //   );
 // }
+
+
+
+
+
+
+
+
+
+
+// spread operator and key props 
+// // first give every object in array a unique id 
+// // then pass that id value 
+// const Booklist = () => {
+//   return (
+//     <section className="bookList">
+//       {
+
+//         arr.map((book) => {
+//           const { imgurl, title, author } = book;
+          
+//           return (
+            
+//             <Book key={book.id} {...book}></Book> // id in key and spread operator for book
+//           );
+//         })
+
+//       }
+//     </section>
+//   );
+// };
+
+
+// const Book = (props) => {
+//   const { imgurl, title, author } = props     // using spread operator we dont need to use props.book
+//   return (
+//     <div>
+//       <img src={imgurl} />
+//       <p>{title}</p>
+//       <p>{author}</p>
+//     </div>
+
+//   );
+// }
+
+
+
+
